@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="batchSource">
+
+	<!-- 기수 -->
+	<select id="selectLcCardinal" parameterType="map" resultType="map">
+		/* batchDev.selectLcCardinal */
+		SELECT CDN_IDX
+			   ,BRANCH
+			   ,CDN_NO
+			   ,TERM_SDATE
+			   ,TERM_EDATE
+			   ,ONLINE_SDATE
+			   ,ONLINE_EDATE
+			   ,ONLINE_DAY_SDATE
+			   ,ONLINE_DAY_EDATE
+			   ,NEW_REG_SDATE
+			   ,REG_SDATE
+			   ,REG_EDATE
+			   ,ONLINE_PAYCL_SDATE
+			   ,ONLINE_CANCEL_SDATE
+			   ,ONLINE_CANCEL_EDATE
+			   ,ONLINE_CONDC_EDATE
+			   ,USE_YN
+			   ,INS_NO
+			   ,INS_DATE
+			   ,UPT_NO
+			   ,UPT_DATE
+		  FROM LC_CARDINAL
+		 ORDER BY CDN_IDX ASC
+	</select>
+
+</mapper>

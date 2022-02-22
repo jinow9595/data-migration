@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ecm> 
+    <fileData filename="BatchDAO.java" filepath="/src/batch/dao" lastversion="31" itemid="201907001436" ecmMd5sum="99685af8c49ca303a513e0add550e5da" lastChangedDate="1564725331000" editor="유문식:P189998" lastUser="유문식:P189998" filestatus="운영중:0" islock="1" isAuthority="1" ischanged="0" rsrccd="32" rsrccdcodename="Java" jobcd="AML" jobname="자금세탁(aml)" syscd="00452" sysmsg="AMLRBA(BatchAml)"/>  
+    <fileData filename="DBClose.java" filepath="/src/batch/dao" lastversion="8" itemid="201907001437" ecmMd5sum="e825184195811f5276f16272336cca61" lastChangedDate="1563842162000" editor="강창용:P199913" lastUser="강창용:P199913" filestatus="운영중:0" islock="1" isAuthority="1" ischanged="0" rsrccd="32" rsrccdcodename="Java" jobcd="AML" jobname="자금세탁(aml)" syscd="00452" sysmsg="AMLRBA(BatchAml)"/>  
+    <fileData filename="batchMapper.xml" filepath="/src/batch/dao" lastversion="55" itemid="201907001441" ecmMd5sum="7f9824c30a010c06c4cbc5188b70cada" lastChangedDate="1565331781000" editor="강창용:P199913" lastUser="강창용:P199913" filestatus="운영중:0" islock="1" isAuthority="1" ischanged="0" rsrccd="45" rsrccdcodename="XML" jobcd="AML" jobname="자금세탁(aml)" syscd="00452" sysmsg="AMLRBA(BatchAml)"/> 
+</ecm>
