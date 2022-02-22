@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="callSettersOnNulls" value="true"/>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<!-- 개발 서버 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<!-- POOLED, UNPOOLED, JNDI(Java Naming and Directory Interface -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+ 				<property name="url" value="jdbc:mysql://retcc-qd-rds-cluster.cluster-cu4eaonkixbh.ap-northeast-2.rds.amazonaws.com:3306/ELAND_TEST?characterEncoding=UTF-8"/>
+ 				<property name="username" value="retcc_app"/>
+ 				<property name="password" value="password"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="batch/dao/batchSourceMapper.xml"/>
+	</mappers>
+</configuration>

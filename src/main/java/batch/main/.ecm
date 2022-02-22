@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ecm> 
+    <fileData filename="BatchMain.java" filepath="/src/batch/main" lastversion="29" itemid="201907001438" ecmMd5sum="ccd187237390bfce4f3a8142ab250293" lastChangedDate="1565670774000" editor="강창용:P199913" lastUser="강창용:P199913" filestatus="운영중:0" islock="1" isAuthority="1" ischanged="0" rsrccd="32" rsrccdcodename="Java" jobcd="AML" jobname="자금세탁(aml)" syscd="00452" sysmsg="AMLRBA(BatchAml)"/> 
+</ecm>

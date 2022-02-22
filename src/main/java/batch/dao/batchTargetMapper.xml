@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="batchTarget">
+
+	<!-- 삭제 -->
+	<delete id="delete_Ca_Case" parameterType="map">
+		/* batchTarget.delete_Ca_Case */
+		DELETE FROM Ca_Case
+	</delete>
+
+	<!--  -->
+	<insert id="insert_Ca_Case" parameterType="map">
+		/* batchTarget.insert_Ca_Case */
+		INSERT INTO Ca_Case
+			(
+			  ApplyIdx
+			 ,ApplyNo
+			 ,RightType
+			 ,IncType
+			 ,CountryIdx
+			 ,TM5Status
+			 ,CaseStatus
+			 ,OrgFileName
+			 ,ImgUrl
+			 ,RightYn
+			 ,CoIdx
+			 ,BizGroup
+			 ,BrandNo
+			 ,SubBrandNo
+			 ,ProductName
+			 ,ManageNo
+			 ,InsId
+			 ,UptId
+			 ,PApplyNo
+			)
+			SELECT T.ApplyIdx
+				   ,T.ApplyNo
+				   ,T.RightType
+				   ,T.IncType
+				   ,T.CountryIdx
+				   ,0
+				   ,CASE WHEN IFNULL(T.CaseStatus,'') = '' THEN 0
+						 ELSE T.CaseStatus
+					 END
+				   ,T.OrgFileName
+				   ,T.ImgUrl
+				   ,''
+				   ,T.CoIdx
+				   ,CASE WHEN SC1.DTLCode IS NULL THEN 0
+						 ELSE SC1.DTLCode
+					 END AS BizGroup
+				   ,CASE WHEN SC2.DTLCode IS NULL THEN 0
+						 ELSE SC2.DTLCode
+					 END AS BrandNo
+				   ,CASE WHEN SC3.DTLCode IS NULL THEN 0
+						 ELSE SC3.DTLCode
+					 END AS SubBrandNo
+				   ,T.ProductName
+				   ,T.ManageNo
+				   ,''
+				   ,''
+				   ,T.PApplyNo
+			  FROM (
+				<foreach collection="paramList" item="item" open="" close="" separator=" UNION ALL ">
+					SELECT  #{item.ApplyIdx} AS ApplyIdx
+						   ,#{item.ApplyNo} AS ApplyNo
+						   ,#{item.RightType} AS RightType
+						   ,#{item.IncType} AS IncType
+						   ,#{item.CountryIdx} AS CountryIdx
+						   ,#{item.CaseStatus} AS CaseStatus
+						   ,#{item.OrgFileName} AS OrgFileName
+						   ,#{item.ImgUrl} AS ImgUrl
+						   ,#{item.CoIdx} AS CoIdx
+						   ,#{item.BizGroup} AS BizGroup
+						   ,#{item.BrandNo} AS BrandNo
+						   ,#{item.SubBrandNo} AS SubBrandNo
+						   ,#{item.ProductName} AS ProductName
+						   ,#{item.ManageNo} AS ManageNo
+						   ,#{item.InsId} AS InsId
+						   ,#{item.UptId} AS UptId
+						   ,#{item.PApplyNo} AS PApplyNo
+				</foreach>
+				   ) T
+				   LEFT OUTER JOIN Sy_CodeDtl SC1
+						   ON SC1.MstCode = '100000'
+						  AND SC1.DtlName = T.BizGroup
+						  AND CASE WHEN T.CountryIdx = '1' THEN 1 ELSE 2 END
+							  = SC1.CountryFlag
+						  AND T.CoIdx = SC1.CoIdx
+				   LEFT OUTER JOIN Sy_CodeDtl SC2
+						   ON SC2.MstCode = '200000'
+						  AND SC2.BuzName = T.BizGroup
+						  AND SC2.DtlName = T.BrandNo
+						  AND CASE WHEN T.CountryIdx = '1' THEN 1 ELSE 2 END
+							  = SC2.CountryFlag
+						  AND T.CoIdx = SC2.CoIdx
+				   LEFT OUTER JOIN Sy_CodeDtl SC3
+						   ON SC3.MstCode = '300000'
+						  AND SC3.BuzName = T.BizGroup
+						  AND SC3.BrandName = T.BrandNo
+						  AND SC3.DtlName = T.SubBrandNo
+						  AND CASE WHEN T.CountryIdx = '1' THEN 1 ELSE 2 END
+							  = SC3.CountryFlag
+						  AND T.CoIdx = SC3.CoIdx
+
+	</insert>
+
+	<!-- 삭제 -->
+	<delete id="delete_Ca_CaseReg" parameterType="map">
+		/* batchTarget.delete_Ca_CaseReg */
+		DELETE FROM Ca_CaseReg
+	</delete>
+
+	<!--  -->
+	<insert id="insert_Ca_CaseReg" parameterType="map">
+		/* batchTarget.insert_Ca_CaseReg */
+		INSERT INTO Ca_CaseReg
+			(
+			  ApplyIdx
+			 ,RegNoInput
+			 ,AddNoInput
+			 ,UseYn
+			 ,InsId
+			 ,UptId
+			)
+			<foreach collection="paramList" item="item" open="" close="" separator=" UNION ALL ">
+			SELECT  #{item.ApplyIdx}
+				   ,#{item.RegNoInput}
+				   ,''
+				   ,'Y'
+				   ,''
+				   ,''
+			</foreach>
+	</insert>
+
+	<!-- 삭제 -->
+	<delete id="delete_Ca_CaseApply" parameterType="map">
+		/* batchTarget.delete_Ca_CaseApply */
+		DELETE FROM Ca_CaseApply
+	</delete>
+
+	<!--  -->
+	<insert id="insert_Ca_CaseApply" parameterType="map">
+		/* batchTarget.insert_Ca_CaseApply */
+		INSERT INTO Ca_CaseApply
+			(
+			  ApplyIdx
+			 ,MarkName
+			 ,ProdService
+			 ,UseYn
+			 ,InsId
+			 ,UptId
+			)
+			<foreach collection="paramList" item="item" open="" close="" separator=" UNION ALL ">
+			SELECT  #{item.ApplyIdx}
+				   ,#{item.MarkName}
+				   ,#{item.ProdService}
+				   ,'Y'
+				   ,''
+				   ,''
+			</foreach>
+	</insert>
+
+	<!-- 삭제 -->
+	<delete id="delete_Ca_CaseLimit" parameterType="map">
+		/* batchTarget.delete_Ca_CaseLimit */
+		DELETE FROM Ca_CaseLimit
+	</delete>
+
+	<!--  -->
+	<insert id="insert_Ca_CaseLimit" parameterType="map">
+		/* batchTarget.insert_Ca_CaseLimit */
+		INSERT INTO Ca_CaseLimit
+			(
+			  ApplyIdx
+			 ,SDate
+			 ,EDate
+			 ,LimitType
+			 ,Contents
+			 ,Person
+			 ,UseYn
+			 ,InsId
+			 ,UptId
+			 ,LimitStatus
+			)
+			SELECT CC.ApplyIdx
+				   ,T.SDate
+				   ,T.EDate
+				   ,T.LimitType
+				   ,T.Contents
+				   ,T.Person
+				   ,'Y'
+				   ,''
+				   ,''
+				   ,T.LimitStatus
+			  FROM (
+				<foreach collection="paramList" item="item" open="" close="" separator=" UNION ALL ">
+					SELECT  #{item.ManageNo} AS ManageNo
+						   ,#{item.SDate} SDate
+						   ,#{item.EDate} EDate
+						   ,#{item.LimitType} LimitType
+						   ,#{item.Contents} Contents
+						   ,#{item.Person} Person
+						   ,#{item.LimitStatus} LimitStatus
+				</foreach>
+				   ) T
+				   INNER JOIN Ca_Case CC
+						   ON CC.ManageNo = T.ManageNo
+	</insert>
+	
+	<update id="update_Ca_Case" parameterType="map">
+		<foreach collection="paramList" item="item" open="" close="" separator=";">
+			UPDATE	Ca_Case
+			SET		OrgFileName = #{item.OrgFileName}
+					, ImgUrl = CONCAT('backup_img',#{item.ImgUrl},#{item.OrgFileName})
+			WHERE	ManageNo = #{item.ManageNo}
+		</foreach>		
+	</update>
+</mapper>
